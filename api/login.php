@@ -23,6 +23,7 @@ csrf();
 <title>Entrar · Estoque</title><link rel="stylesheet" href="/style.css"></head><body>
 <div class="login card">
   <h1>📦 Estoque</h1>
+  <div class="hint"><strong>Acesso de demonstração</strong><br>login: admin<br>senha: admin</div>
   <?php if ($erro): ?><div class="flash err"><?= e($erro) ?></div><?php endif; ?>
   <form class="form" method="post">
     <?= csrf_field() ?>
