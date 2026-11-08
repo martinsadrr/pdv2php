@@ -25,6 +25,8 @@ function db(): PDO
     $pdo = new PDO($dsn, urldecode($u['user'] ?? ''), urldecode($u['pass'] ?? ''), [
         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
         PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+        // O pooler do Supabase (pgbouncer, modo transaction) não suporta prepared statements no servidor.
+        PDO::ATTR_EMULATE_PREPARES => true,
     ]);
 
     if ($pdo->query("SELECT to_regclass('public.produtos')")->fetchColumn() === null) {

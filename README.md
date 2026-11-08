@@ -13,10 +13,10 @@ Veja `.env.example`: `DATABASE_URL`, `DB_SSLMODE`, `APP_KEY`, `ADMIN_USER`, `ADM
 As tabelas são criadas automaticamente no primeiro acesso (`schema.sql`).
 
 ## Deploy na Vercel
-1. Crie um banco Postgres (Neon, Supabase ou Vercel Postgres) e copie a connection string.
+1. No Supabase, copie a connection string do **Transaction pooler** (Project Settings → Database). A conexão direta é só IPv6 e não funciona bem na Vercel.
 2. Importe este repositório na Vercel.
 3. Em *Settings → Environment Variables*, cadastre as variáveis acima.
-4. Faça o deploy.
+4. Faça o deploy. O app habilita RLS nas tabelas ao criá-las, então a API pública do Supabase não expõe os dados.
 
 > O SQLite não funciona na Vercel (sistema de arquivos efêmero), por isso o projeto usa Postgres.
 

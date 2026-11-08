@@ -32,3 +32,9 @@ CREATE TABLE IF NOT EXISTS movimentacoes (
 
 CREATE INDEX IF NOT EXISTS idx_mov_produto ON movimentacoes(produto_id);
 CREATE INDEX IF NOT EXISTS idx_mov_criado ON movimentacoes(criado_em DESC);
+
+-- Supabase expõe o schema public via API REST. Com RLS ativo e sem policies,
+-- a API pública (chave anon) não acessa nada; o app conecta como role postgres e ignora o RLS.
+ALTER TABLE categorias ENABLE ROW LEVEL SECURITY;
+ALTER TABLE produtos ENABLE ROW LEVEL SECURITY;
+ALTER TABLE movimentacoes ENABLE ROW LEVEL SECURITY;
